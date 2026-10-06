@@ -5,235 +5,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gua Keren Kan? 😎</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden;
-            background-color: #0b0f19;
-            position: relative;
-        }
-
-        /* --- 📸 BACKGROUND LANGIT MALAM BERBINTANG --- */
-        .photo-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background-image: url('https://unsplash.com'); 
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            display: none; 
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.65); 
-            z-index: 0;
-            display: none; 
-        }
-
-        .container {
-            text-align: center;
-            position: relative;
-            width: 100%;
-            max-width: 400px;
-            padding: 20px;
-            z-index: 10;
-        }
-
-        /* --- TAMPILAN AWAL (GENGSI) --- */
-        .gengsi-section {
-            display: block;
-        }
-        .gengsi-title {
-            font-size: 24px;
-            color: #ff4d6d;
-            font-weight: bold;
-            margin-bottom: 25px;
-            line-height: 1.4;
-        }
-        .start-btn {
-            padding: 16px 32px;
-            font-size: 16px;
-            font-weight: bold;
-            color: white;
-            background: linear-gradient(135deg, #ff4d6d, #ff758f);
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 10px 25px rgba(255, 77, 109, 0.4);
-            animation: pulse 1.5s infinite;
-            transition: transform 0.2s;
-        }
-
-        /* --- KARTU PENGHARGAAN --- */
-        .reward-card {
-            display: none;
-            background: rgba(255, 255, 255, 0.93);
-            padding: 30px;
-            border-radius: 24px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-            border: 2px solid #ffb3c6;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-        .reward-card.show {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .trophy {
-            font-size: 60px;
-            margin-bottom: 10px;
-            animation: float 3s ease-in-out infinite;
-        }
-        .reward-title {
-            font-size: 20px;
-            color: #ff4d6d;
-            font-weight: bold;
-            margin-bottom: 15px;
-            border-bottom: 2px dashed #ffe5ec;
-            padding-bottom: 10px;
-        }
-        .reward-text {
-            font-size: 15px;
-            color: #2b2b2b;
-            line-height: 1.6;
-            text-align: left;
-        }
-
-        /* --- 💖 ANIMASI HATI BERJATUHAN --- */
-        .heart {
-            position: fixed;
-            top: -20px;
-            font-size: 20px;
-            color: #ff4d6d;
-            opacity: 0.6;
-            z-index: 5;
-            user-select: none;
-            pointer-events: none;
-            animation: fall linear infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        @keyframes fall {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 0.6;
-            }
-            100% {
-                transform: translateY(105vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
+        body { margin: 0; min-height: 100vh; display: flex; justify-content: center; align-items: center; font-family: sans-serif; overflow: hidden; background-color: #0b0f19; }
+        .photo-background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: url('https://unsplash.com') center/cover no-repeat; display: none; }
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.65); z-index: 0; display: none; }
+        .container { text-align: center; position: relative; width: 90%; max-width: 400px; z-index: 10; }
+        .gengsi-title { font-size: 24px; color: #ff4d6d; font-weight: bold; margin-bottom: 25px; }
+        .start-btn, .next-page-btn { padding: 16px 32px; font-size: 16px; font-weight: bold; color: white; background: linear-gradient(135deg, #ff4d6d, #ff758f); border: none; border-radius: 50px; cursor: pointer; box-shadow: 0 10px 25px rgba(255, 77, 109, 0.4); }
+        .reward-card { display: none; background: rgba(255, 255, 255, 0.95); padding: 25px; border-radius: 24px; border: 2px solid #ffb3c6; text-align: left; }
+        .trophy { font-size: 55px; text-align: center; margin-bottom: 5px; }
+        .reward-title { font-size: 20px; color: #ff4d6d; font-weight: bold; margin-bottom: 15px; border-bottom: 2px dashed #ffe5ec; padding-bottom: 10px; }
+        .reward-text { font-size: 15px; color: #2b2b2b; line-height: 1.6; min-height: 180px; }
+        .next-page-btn { display: none; margin-top: 20px; width: 100%; }
+        .heart { position: fixed; top: -20px; font-size: 20px; color: #ff4d6d; opacity: 0.6; z-index: 5; animation: fall linear infinite; }
+        @keyframes fall { 0% { transform: translateY(0) rotate(0deg); opacity: 0.6; } 100% { transform: translateY(105vh) rotate(360deg); opacity: 0; } }
     </style>
 </head>
 <body>
-
     <div class="photo-background" id="photoBgContainer"></div>
     <div class="overlay" id="videoOverlay"></div>
-
     <div class="container">
-        <!-- Bagian Awal -->
-        <div class="gengsi-section" id="gengsiSection">
+        <div id="gengsiSection">
             <div class="gengsi-title">Hari ini gua dapet rekor baru... 😎🏆</div>
             <button class="start-btn" onclick="bukaRekor()">Rekor Apaan? 🤔</button>
         </div>
-
-        <!-- Bagian Kartu Penghargaan -->
         <div class="reward-card" id="rewardSection">
             <div class="trophy">🏆🥇</div>
             <div class="reward-title">Piagam Manusia Terkeren</div>
             <div class="reward-text" id="typingTarget"></div>
+            <button class="next-page-btn" id="nextPageBtn" onclick="pindahHalaman()"></button>
         </div>
     </div>
-
-    <!-- 🎵 MEMANGGIL LAGU LOKAL DARI GITHUB LU -->
-    <audio id="bgMusic" src="dekatdihati.mp3" loop preload="auto"></audio>
-
+    <audio id="bgMusic" src="dekatdihati.mp3" loop></audio>
     <script>
-        const pesanCinta = "Selamat buat diri gua sendiri, karena hari ini gua berhasil bertahan nahan kangen ke elu tanpa spam chat sedikit pun. Keren kan gua? 😎 \n\nGua tau lu punya kehidupan, kesibukan, dan urusan yang harus lu selesaiin di sana. Makanya gua coba dewasa buat nahan diri biar gak ngeganggu waktu lu... \n\nTapi jujur, aslinya ini gua lagi ngetik sambil nahan kangen setengah mati. Kadang lucu ya, makin ditahan malah makin kepikiran. Gua cuma mau nunjukin kalau biarpun gua gak chat lu seharian, rasa sayang gua ke elu gak pernah berkurang sedikit pun. Gua selalu dukung apa pun yang lagi lu kerjain sekarang. \n\nOh iya, lewat pesan ini gua juga cuma mau billing terima kasih banyak ya, makasih karena kamu udah hadir dan jadi bagian paling indah di kehidupan gua. Di sela-sela kesibukan kita, jujur gua selalu menunggu banget hari di mana kita bisa ketemu lagi nanti. \n\nLu lagi apa di sana? Semoga hari lu menyenangkan yaa! ❤️✨";
-
+        const kontenHalaman = [
+            "Selamat buat diri gua sendiri, karena hari ini gua berhasil bertahan nahan kangen ke elu tanpa spam chat sedikit pun. Keren kan gua? 😎 \n\nGua tau lu punya kehidupan, kesibukan, dan urusan yang harus lu selesaiin di sana. Makanya gua coba dewasa buat nahan diri biar gak ngeganggu waktu lu...",
+            "Tapi jujur, aslinya ini gua lagi ngetik sambil nahan kangen setengah mati. Kadang lucu ya, makin ditahan malah makin kepikiran. Gua cuma mau nunjukin kalau biarpun gua gak chat lu seharian, rasa sayang gua ke elu gak pernah berkurang sedikit pun. Gua selalu dukung apa pun yang lagi lu kerjain sekarang. \n\nOh iya, lewat pesan ini gua juga cuma mau bilang terima kasih banyak ya, makasih karena kamu udah hadir dan jadi bagian paling indah di kehidupan gua. Di sela-sela kesibukan kita, jujur gua selalu menunggu banget hari di mana kita bisa ketemu lagi nanti. \n\nLu lagi apa di sana? Semoga hari lu menyenangkan yaa! ❤️✨"
+        ];
+        let hal = 0, idx = 0, ngetik = false;
         function bukaRekor() {
-            const music = document.getElementById('bgMusic');
-            
-            // Putar musik dekatdihati.mp3
-            music.play().catch(error => console.log("Audio siap mengalun..."));
-
+            document.getElementById('bgMusic').play().catch(e => console.log(e));
             document.getElementById('gengsiSection').style.display = 'none';
-
-            document.getElementById('photoBgContainer').style.display = 'block';
-            document.getElementById('videoOverlay').style.display = 'block';
-
-            const card = document.getElementById('rewardSection');
-            card.style.display = 'block';
-            setTimeout(() => {
-                card.classList.add('show');
-                typeWriter();
-                // Mulai munculkan animasi hati berjatuhan pas surat dibuka
-                setInterval(createHeart, 300);
-            }, 100);
+            document.getElementById('photoBgContainer').style.display = document.getElementById('videoOverlay').style.display = 'block';
+            document.getElementById('rewardSection').style.display = 'block';
+            document.getElementById('rewardSection').style.opacity = 1;
+            mulaiKetik();
+            setInterval(createHeart, 300);
         }
-
-        let index = 0;
+        function mulaiKetik() {
+            document.getElementById("typingTarget").innerHTML = "";
+            document.getElementById('nextPageBtn').style.display = 'none';
+            idx = 0; ngetik = true; typeWriter();
+        }
         function typeWriter() {
-            if (index < pesanCinta.length) {
-                let char = pesanCinta.charAt(index);
-                if (char === "\n") {
-                    document.getElementById("typingTarget").innerHTML += "<br>";
-                } else {
-                    document.getElementById("typingTarget").innerHTML += char;
-                }
-                index++;
-                setTimeout(typeWriter, 58); 
-            }
+            let txt = kontenHalaman[hal];
+            if (idx < txt.length) {
+                document.getElementById("typingTarget").innerHTML += txt.charAt(idx) === "\n" ? "<br>" : txt.charAt(idx);
+                idx++; setTimeout(typeWriter, 40);
+            } else { ngetik = false; btnNav(); }
         }
-
-        // Fungsi membuat elemen hati berjatuhan secara acak
+        function btnNav() {
+            const btn = document.getElementById('nextPageBtn');
+            btn.innerText = hal < kontenHalaman.length - 1 ? "Lanjut Baca... ✨" : "Selesai Baca ❤️";
+            btn.style.display = 'block';
+        }
+        function pindahHalaman() {
+            if (ngetik) return;
+            if (hal < kontenHalaman.length - 1) { hal++; mulaiKetik(); } 
+            else { alert("Semoga hari-hari kamu selalu lancar ya! Makasih udah dapet rekor hari ini bareng gua. 🥰🏆"); }
+        }
         function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            
-            // Variasi emoji hati biar lucu
-            const heartIcons = ['❤️', '💖', '🤍', '💕'];
-            heart.innerText = heartIcons[Math.floor(Math.random() * heartIcons.length)];
-            
-            // Mengatur posisi jatuh acak dari kiri ke kanan layar
-            heart.style.left = Math.random() * 100 + "vw";
-            
-            // Mengatur durasi jatuh acak biar gak barengan (antara 3 sampai 6 detik)
-            const duration = Math.random() * 3 + 3;
-            heart.style.animationDuration = duration + "s";
-            
-            // Mengatur ukuran hati acak biar ada dimensi kedalaman
-            heart.style.fontSize = Math.random() * 15 + 15 + "px";
-            
-            document.body.appendChild(heart);
-            
-            // Menghapus elemen setelah animasi jatuh selesai agar tidak membebani memori HP
-            setTimeout(() => {
-                heart.remove();
-            }, duration * 1000);
+            const h = document.createElement('div'); h.classList.add('heart');
+            h.innerText = ['❤️', '💖', '🤍', '💕'][Math.floor(Math.random() * 4)];
+            h.style.left = Math.random() * 100 + "vw";
+            const dur = Math.random() * 3 + 3; h.style.animationDuration = dur + "s";
+            h.style.fontSize = Math.random() * 15 + 15 + "px"; document.body.appendChild(h);
+            setTimeout(() => { h.remove(); }, dur * 1000);
         }
     </script>
 </body>
