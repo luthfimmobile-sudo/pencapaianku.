@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gua Keren Kan? 😎</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            background-color: #0b0f19;
+            position: relative;
+        }
+
+        /* --- 📸 BACKGROUND LANGIT MALAM BERBINTANG (SESUAI KONSEP TAHAN RINDU) --- */
+        .photo-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: url('https://unsplash.com'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: none; 
+        }
+
+        /* Lapisan transparan gelap agar teks kontras dan nyaman dibaca */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65); 
+            z-index: 0;
+            display: none; 
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            z-index: 10;
+        }
+
+        /* --- TAMPILAN AWAL (GENGSI) --- */
+        .gengsi-section {
+            display: block;
+        }
+        .gengsi-title {
+            font-size: 24px;
+            color: #ff4d6d;
+            font-weight: bold;
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+        .start-btn {
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(135deg, #ff4d6d, #ff758f);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(255, 77, 109, 0.4);
+            animation: pulse 1.5s infinite;
+            transition: transform 0.2s;
+        }
+
+        /* --- KARTU PENGHARGAAN (BUCIN) --- */
+        .reward-card {
+            display: none;
+            background: rgba(255, 255, 255, 0.93);
+            padding: 30px;
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            border: 2px solid #ffb3c6;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        .reward-card.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .trophy {
+            font-size: 60px;
+            margin-bottom: 10px;
+            animation: float 3s ease-in-out infinite;
+        }
+        .reward-title {
+            font-size: 20px;
+            color: #ff4d6d;
+            font-weight: bold;
+            margin-bottom: 15px;
+            border-bottom: 2px dashed #ffe5ec;
+            padding-bottom: 10px;
+        }
+        .reward-text {
+            font-size: 16px;
+            color: #2b2b2b;
+            line-height: 1.7;
+            text-align: left;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="photo-background" id="photoBgContainer"></div>
+    <div class="overlay" id="videoOverlay"></div>
+
+    <div class="container">
+        <!-- Bagian Layar Gengsi Awal -->
+        <div class="gengsi-section" id="gengsiSection">
+            <div class="gengsi-title">Hari ini gua dapet rekor baru... 😎🏆</div>
+            <button class="start-btn" onclick="bukaRekor()">Rekor Apaan? 🤔</button>
+        </div>
+
+        <!-- Bagian Kartu Penghargaan Diam-diam Kangen -->
+        <div class="reward-card" id="rewardSection">
+            <div class="trophy">🏆🥇</div>
+            <div class="reward-title">Piagam Manusia Terkeren</div>
+            <div class="reward-text" id="typingTarget"></div>
+        </div>
+    </div>
+
+    <!-- 🎵 AUDIO LAGU UTAMA -->
+    <!-- Lu bisa cari file .mp3 lagu pilihan lu di internet lalu ganti isi src di bawah ini -->
+    <audio id="bgMusic" src="https://catbox.moe" loop preload="auto"></audio>
+
+    <script>
+        // Teks Bersih: Kata "seng" sudah dihilangkan total sesuai instruksi lu, Bre.
+        const pesanCinta = "Selamat buat diri gua sendiri, karena hari ini gua berhasil bertahan nahan kangen ke elu tanpa spam chat sedikit pun. Keren kan gua? 😎 \n\nGua tau lu juga punya kehidupan dan kesibukan di sana, makanya gua coba tahan biar gak ganggu kamu... \n\nTapi boong, aslinya ini gua lagi ngetik sambil nahan kangen setengah mati. Lu lagi apa sekarang? Semoga hari lu menyenangkan yaa! ❤️✨";
+
+        function bukaRekor() {
+            const music = document.getElementById('bgMusic');
+            
+            // Putar lagu pengiring pilihan lu secara otomatis
+            music.play().catch(error => console.log("Audio siap mengalun..."));
+
+            document.getElementById('gengsiSection').style.display = 'none';
+
+            // Munculkan foto latar langit malam berbintang
+            document.getElementById('photoBgContainer').style.display = 'block';
+            document.getElementById('videoOverlay').style.display = 'block';
+
+            const card = document.getElementById('rewardSection');
+            card.style.display = 'block';
+            setTimeout(() => {
+                card.classList.add('show');
+                typeWriter();
+            }, 100);
+        }
+
+        let index = 0;
+        function typeWriter() {
+            if (index < pesanCinta.length) {
+                let char = pesanCinta.charAt(index);
+                if (char === "\n") {
+                    document.getElementById("typingTarget").innerHTML += "<br>";
+                } else {
+                    document.getElementById("typingTarget").innerHTML += char;
+                }
+                index++;
+                setTimeout(typeWriter, 50);
+            }
+        }
+    </script>
+</body>
+</html>
