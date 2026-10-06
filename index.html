@@ -4,20 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gua Keren Kan? 😎</title>
-    <!-- Memanggil Font Google Quicksand yang Estetik & Elegan -->
-    <link href="https://googleapis.com" rel="stylesheet">
+    <!-- Memanggil Google Fonts Resmi -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
     <style>
-        body { margin: 0; min-height: 100vh; display: flex; justify-content: center; align-items: center; font-family: 'Quicksand', sans-serif; overflow: hidden; background-color: #0b0f19; }
+        body { margin: 0; min-height: 100vh; display: flex; justify-content: center; align-items: center; font-family: 'Quicksand', sans-serif !important; overflow: hidden; background-color: #0b0f19; }
         .photo-background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: url('https://unsplash.com') center/cover no-repeat; display: none; }
-        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.55); z-index: 0; display: none; }
-        .container { text-align: center; position: relative; width: 90%; max-width: 400px; z-index: 10; }
-        .gengsi-title { font-size: 24px; color: #ff758f; font-weight: bold; margin-bottom: 25px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-        .start-btn, .next-page-btn { padding: 16px 32px; font-size: 16px; font-weight: 700; color: white; background: linear-gradient(135deg, #ff4d6d, #ff758f); border: none; border-radius: 50px; cursor: pointer; box-shadow: 0 10px 25px rgba(255, 77, 109, 0.4); font-family: 'Quicksand', sans-serif; }
-        /* ✨ KOTAK TEKS GLASSMORPHISM (EFEK KACA BURAM TRANSPARAN) */
-        .reward-card { display: none; background: rgba(255, 255, 255, 0.12); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 25px; border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.25); text-align: left; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
-        .trophy { font-size: 55px; text-align: center; margin-bottom: 5px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); }
-        .reward-title { font-size: 21px; color: #ff758f; font-weight: bold; margin-bottom: 15px; border-bottom: 1px dashed rgba(255,255,255,0.2); padding-bottom: 10px; text-align: center; }
-        .reward-text { font-size: 15px; color: #ffffff; line-height: 1.7; min-height: 180px; text-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.65); z-index: 0; display: none; }
+        .container { text-align: center; position: relative; width: 90%; max-width: 400px; z-index: 10; font-family: 'Quicksand', sans-serif !important; }
+        .gengsi-title { font-size: 24px; color: #ff758f; font-weight: 700; margin-bottom: 25px; font-family: 'Quicksand', sans-serif !important; }
+        .start-btn, .next-page-btn { padding: 16px 32px; font-size: 16px; font-weight: 700; color: white; background: linear-gradient(135deg, #ff4d6d, #ff758f); border: none; border-radius: 50px; cursor: pointer; box-shadow: 0 10px 25px rgba(255, 77, 109, 0.4); font-family: 'Quicksand', sans-serif !important; }
+        
+        /* ✨ KOTAK KACA BARU (Ganti Nama Class Biar Gak Kena Cache HP) */
+        .kotak-kaca-estetik { 
+            display: none; 
+            background: rgba(255, 255, 255, 0.12) !important; 
+            backdrop-filter: blur(15px) !important; 
+            -webkit-backdrop-filter: blur(15px) !important; 
+            padding: 25px; 
+            border-radius: 24px; 
+            border: 1px solid rgba(255, 255, 255, 0.25) !important; 
+            text-align: left; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5); 
+        }
+        
+        .trophy { font-size: 55px; text-align: center; margin-bottom: 5px; }
+        .reward-title { font-size: 21px; color: #ff758f; font-weight: 700; margin-bottom: 15px; border-bottom: 1px dashed rgba(255,255,255,0.2); padding-bottom: 10px; text-align: center; font-family: 'Quicksand', sans-serif !important; }
+        .reward-text { font-size: 15px; color: #ffffff !important; line-height: 1.8; min-height: 180px; font-family: 'Quicksand', sans-serif !important; font-weight: 600; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
         .next-page-btn { display: none; margin-top: 20px; width: 100%; }
         .heart { position: fixed; top: -20px; font-size: 20px; color: #ff4d6d; opacity: 0.7; z-index: 5; animation: fall linear infinite; }
         @keyframes fall { 0% { transform: translateY(0) rotate(0deg); opacity: 0.7; } 100% { transform: translateY(105vh) rotate(360deg); opacity: 0; } }
@@ -31,7 +45,8 @@
             <div class="gengsi-title">Hari ini gua dapet rekor baru... 😎🏆</div>
             <button class="start-btn" onclick="bukaRekor()">Rekor Apaan? 🤔</button>
         </div>
-        <div class="reward-card" id="rewardSection">
+        <!-- Menggunakan Class Baru Anti-Cache -->
+        <div class="kotak-kaca-estetik" id="rewardSection">
             <div class="trophy">🏆🥇</div>
             <div class="reward-title">Piagam Manusia Terkeren</div>
             <div class="reward-text" id="typingTarget"></div>
